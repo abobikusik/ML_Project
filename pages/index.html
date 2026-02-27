@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Сервис генерации описания товаров</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- CSS стили -->
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body style="background: #f0f2f5;">
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">💿 Сервис генерации описания товаров</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">🏠 Главная</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            📦 Категории
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">📱 Смартфоны</a></li>
+                            <li><a class="dropdown-item" href="#">💻 Ноутбуки</a></li>
+                            <li><a class="dropdown-item" href="#">📺 Телевизоры</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">📝 История запросов</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <!-- Карточка с категориями -->
+                <div class="category-card">
+                    <h2 class="category-title">
+                        Выберите категорию
+                    </h2>
+
+                    <!-- КОНТЕЙНЕР С ПРОКРУТКОЙ (высота 350px) -->
+                    <div class="category-buttons-container">
+                        <div class="category-buttons">
+                            <!-- Смартфон -->
+                            <div class="category-btn" onclick="selectCategory('smartphone', this)">
+                                <span class="category-icon">📱</span>
+                                Смартфон
+                                <span style="margin-left: auto; font-size: 14px; color: #999;">→</span>
+                            </div>
+
+                            <!-- Ноутбук -->
+                            <div class="category-btn" onclick="selectCategory('notebook', this)">
+                                <span class="category-icon">💻</span>
+                                Ноутбук
+                                <span style="margin-left: auto; font-size: 14px; color: #999;">→</span>
+                            </div>
+
+                            <!-- Телевизор -->
+                            <div class="category-btn" onclick="selectCategory('tv', this)">
+                                <span class="category-icon">📺</span>
+                                Телевизор
+                                <span style="margin-left: auto; font-size: 14px; color: #999;">→</span>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Подсказка -->
+                <div style="text-align: center; color: #666; margin-top: 20px;">
+                    <small>ООО "ТМЫВ ДЕНЯК"</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- Наш JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
