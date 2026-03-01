@@ -37,8 +37,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">📱 Смартфоны</a></li>
-                            <li><a class="dropdown-item" href="#">💻 Ноутбуки</a></li>
-                            <li><a class="dropdown-item active" href="#">📺 Телевизоры</a></li>
+                            <li><a class="dropdown-item active" href="#">💻 Ноутбуки</a></li>
+                            <li><a class="dropdown-item" href="#">📺 Телевизоры</a></li>
                         </ul>
                     </li>
 
@@ -57,70 +57,79 @@
                 <!-- Карточка формы -->
                 <div class="form-card">
                     <h2 class="main-title">
-                        Введите характеристки для генерации описания Телевизора
+                        Введите характеристки для генерации описания Ноутбука
                     </h2>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label">Бренд</label>
-                                <input id="tvBrand" class="form-control" placeholder="Apple, Samsung" />
+                                <input id="laptopBrand" class="form-control" placeholder="Apple, Samsung" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Модель</label>
-                                <input id="tvModel" class="form-control" placeholder="TV Pro, Ultra" />
+                                <input id="laptopModel" class="form-control" placeholder="Mac Air, Pro" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Диагональ (дюймы)</label>
-                                <input id="tvScreen_size" class="form-control" placeholder="65" type="number"
+                                <input id="laptopScreen_size" class="form-control" placeholder="15.6" type="number"
                                     step="0.1" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Тип матрицы</label>
-                                <input id="tvDisplay_type" class="form-control" placeholder="QLED" />
+                                <input id="laptopDisplay_type" class="form-control" placeholder="OLED" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Частота обновления (Гц)</label>
-                                <input id="tvScreen_refresh" class="form-control" placeholder="120" type="number" />
+                                <input id="laptopScreen_refresh" class="form-control" placeholder="240" type="number" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Разрешение экрана</label>
-                                <input id="tvScreen_resolution" class="form-control" placeholder="4K Ultra HD" />
+                                <input id="laptopScreen_resolution" class="form-control" placeholder="Full HD, 4K" />
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Процессор</label>
-                                <input id="tvProcessor" class="form-control" placeholder="Neo Quantum Processor" />
+                                <label class="form-label">Материал корпуса</label>
+                                <input id="laptopMaterial" class="form-control" placeholder="Алюминий" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Вес (Кг)</label>
+                                <input id="laptopWeight" class="form-control" placeholder="1" type="number" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
-                                <label class="form-label">Мощность звука (Вт)</label>
-                                <input id="tvAudio_power" class="form-control" placeholder="60" type="number" />
+                                <label class="form-label">Процессор CPU</label>
+                                <input id="laptopProcessor" class="form-control" placeholder="AMD Ryzen (3/5/7/9)" />
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Количество динамиков (Каналов)</label>
-                                <input id="tvSpeakers_channels" class="form-control" placeholder="4.2" type="number"
+                                <label class="form-label">Оперативная память RAM (Гб)</label>
+                                <input id="laptopRAM" class="form-control" placeholder="16" type="number" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Накопитель SSD (Гб)</label>
+                                <input id="laptopSSD" class="form-control" placeholder="256" type="number" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Видеокарта</label>
+                                <input id="laptopGraphics_card" class="form-control"
+                                    placeholder="NVIDIA GeForce RTX 3050/4060/4090" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Видеопамять VRAM (Гб)</label>
+                                <input id="laptopVRAM" class="form-control" placeholder="8" type="number" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Ёмкость батареи (Вт/ч)</label>
+                                <input id="laptopBattery" class="form-control" placeholder="72.4" type="number"
                                     step="0.1" />
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Количество портов HDMI (Шт)</label>
-                                <input id="tvHDMI_count" class="form-control" placeholder="72,4" type="number" />
+                                <label class="form-label">Блок питания (Вт)</label>
+                                <input id="laptopPower_adapter" class="form-control" placeholder="230" type="number" />
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Версия HDMI</label>
-                                <input id="tvHDMI_version" class="form-control" placeholder="4.1" type="number"
-                                    step="0.1" />
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Способ установки</label>
-                                <input id="laptopOS" class="form-control" placeholder="Крепление на стену" />
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Материал корпуса</label>
-                                <input id="tvMaterial" class="form-control" placeholder="Пластик" />
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Вес (Кг)</label>
-                                <input id="tvWeight" class="form-control" placeholder="3" type="number" />
+                                <label class="form-label">Предустановленная ОС</label>
+                                <input id="laptopOS" class="form-control" placeholder="Windows 11, macOS, Linux" />
                             </div>
                         </div>
                     </div>
