@@ -184,4 +184,3 @@ async function btnTvGenerateClick() {
     postTvForm(brand, model, screen_size, display_type, screen_refresh, screen_resolution, processor,
         audio_power, speakers_channels, HDMI_count, HDMI_version, installation, material, weight);
 };
-
