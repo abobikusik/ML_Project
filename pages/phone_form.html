@@ -11,7 +11,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <!-- Наши CSS стили -->
-    <link href="style.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">🏠 Главная</a>
+                        <a class="nav-link" onclick="btnGoToMainPage()">🏠 Главная</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -36,9 +36,9 @@
                             📦 Категории
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item active" href="#">📱 Смартфоны</a></li>
-                            <li><a class="dropdown-item" href="#">💻 Ноутбуки</a></li>
-                            <li><a class="dropdown-item" href="#">📺 Телевизоры</a></li>
+                            <li><a class="dropdown-item active" onclick="btnGoToPhoneFormClick()">📱 Смартфоны</a></li>
+                            <li><a class="dropdown-item" onclick="btnGoToLaptopFormClick()">💻 Ноутбуки</a></li>
+                            <li><a class="dropdown-item" onclick="btnGoToTvFormClick()">📺 Телевизоры</a></li>
                         </ul>
                     </li>
 
@@ -126,7 +126,7 @@
                     <div class="row">
                         <div class="col"></div>
                         <div class="col">
-                            <div class="generate-btn" onclick="">
+                            <div id="generatePhoneBtn" class="generate-btn" onclick="btnPhoneGenerateClick()">
                                 Сгенерировать
                             </div>
                         </div>
@@ -144,7 +144,7 @@
         crossorigin="anonymous"></script>
 
     <!-- Наш JavaScript -->
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
 </body>
 
 </html>
