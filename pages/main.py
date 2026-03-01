@@ -1,7 +1,5 @@
-
-from sqlalchemy.orm import Session
-from fastapi import Depends, FastAPI, Body
-from fastapi.responses import JSONResponse, FileResponse
+from fastapi import FastAPI, Body
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
   
 app = FastAPI()
