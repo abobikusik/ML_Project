@@ -11,10 +11,6 @@ logger = logging.getLogger(__name__)
 
 
 #PHONE ROUTES
-@router.get("/phone_form")
-def get_phone_form():
-    return FileResponse("views/forms/phone_form.html")
-
 @router.post("/phone_form")
 def phone_form(data: dict = Body()):
 
@@ -44,20 +40,20 @@ def phone_form(data: dict = Body()):
         phone_data = {
             "brand": data.get("brand", ""),
             "model": data.get("model", ""),
-            "screen_size": data.get("screen_size", ""),
-            "display_type": data.get("display_type", ""),
-            "screen_refresh": data.get("screen_refresh", ""),
+            "screen_size": data.get("screenSize", ""),
+            "display_type": data.get("matrixType", ""),
+            "screen_refresh": data.get("frequency", ""),
             "processor": data.get("processor", ""),
-            "os": data.get("OS", ""),
+            "os": data.get("os", ""),
             "cellular": data.get("cellular", ""),
             "storage": data.get("storage", ""),
             "camera": data.get("camera", ""),
             "battery": data.get("battery", ""),
-            "charging_speed": data.get("charging_speed", ""),
+            "charging_speed": data.get("chargingSpeed", ""),
             "material": data.get("material", ""),
             "weight": data.get("weight", "")
         }
-        
+
         #Добавляем в таблицу Запросов Телефона id записи из таблицы Запросов, которая только что была добавлена, и данные, введенные пользователем
         db_phone = models.PhoneRequest(
             request_id=db_request.id,
@@ -80,10 +76,6 @@ def phone_form(data: dict = Body()):
 ### АНАЛОГИЧНО ДЛЯ ОСТАЛЬНЫХ ФОРМ ###
 
 #LAPTOP ROUTES
-@router.get("/laptop_form")
-def get_laptop_form():
-    return FileResponse("views/forms/laptop_form.html")
-
 @router.post("/laptop_form")
 def laptop_form(data: dict = Body()):
 
@@ -109,21 +101,21 @@ def laptop_form(data: dict = Body()):
         laptop_data = {
             "brand": data.get("brand", ""),
             "model": data.get("model", ""),
-            "screen_size": data.get("screen_size", ""),
-            "display_type": data.get("display_type", ""),
-            "screen_refresh": data.get("screen_refresh", ""),
-            "screen_resolution": data.get("screen_resolution", ""),
+            "screen_size": data.get("diagonal", ""),
+            "display_type": data.get("matrix", ""),
+            "screen_refresh": data.get("frequency", ""),
+            "screen_resolution": data.get("resolution", ""),
             "processor": data.get("processor", ""),
-            "os": data.get("OS", ""),
-            "ram": data.get("RAM", ""),
-            "ssd": data.get("SSD", ""),
-            "graphics_card": data.get("graphics_card", ""),
+            "os": data.get("os", ""),
+            "ram": data.get("ram", ""),
+            "ssd": data.get("ssd", ""),
+            "graphics_card": data.get("graphicsCard", ""),
             "vram": data.get("VRAM", ""),
             "battery": data.get("battery", ""),
-            "power_adapter": data.get("power_adapter", ""),
+            "power_adapter": data.get("powerAdapter", ""),
             "material": data.get("material", ""),
             "weight": data.get("weight", "")
-        }
+        }  
         
         db_laptop = models.LaptopRequest(
             request_id=db_request.id,
@@ -144,10 +136,6 @@ def laptop_form(data: dict = Body()):
         db.close()
 
 #TV ROUTES
-@router.get("/tv_form")
-def get_tv_form():
-    return FileResponse("views/forms/tv_form.html")
-
 @router.post("/tv_form")
 def tv_form(data: dict = Body()):
 
@@ -173,20 +161,20 @@ def tv_form(data: dict = Body()):
         tv_data = {
             "brand": data.get("brand", ""),
             "model": data.get("model", ""),
-            "screen_size": data.get("screen_size", ""),
-            "display_type": data.get("display_type", ""),
-            "screen_refresh": data.get("screen_refresh", ""),
-            "screen_resolution": data.get("screen_resolution", ""),
+            "screen_size": data.get("screenSize", ""),
+            "display_type": data.get("matrixType", ""),
+            "screen_refresh": data.get("frequency", ""),
+            "screen_resolution": data.get("resolution", ""),
             "processor": data.get("processor", ""),
-            "os": data.get("OS", ""),
-            "audio_power": data.get("audio_power", ""),
-            "speakers_channels": data.get("speakers_channels", ""),
-            "hdmi_count": data.get("HDMI_count", ""),
-            "installation": data.get("installation", ""),
+            "audio_power": data.get("audioPower", ""),
+            "speakers_channels": data.get("numberOfSpeakers", ""),
+            "hdmi_count": data.get("hdmiCount", ""),
+            "hdmi_version": data.get("hdmiVersion", ""),
+            "installation": data.get("installationMethod", ""),
             "material": data.get("material", ""),
             "weight": data.get("weight", "")
         }
-        
+    
         db_tv = models.TvRequest(
             request_id=db_request.id,
             **tv_data #распаковка словаря 

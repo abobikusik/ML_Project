@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 #APIRouter — это способ группировать маршруты в FastAPI
-router = APIRouter(prefix="/api/history", tags=["history"])
+router = APIRouter(prefix="/history", tags=["history"])
 
 
 #Pydantic модели для проверки структуры ответов
@@ -130,10 +130,10 @@ def get_request_detail(request_id: int, db: Session = Depends(get_db)):
                 "Частота обновления": f"{details.screen_refresh} Гц" if details.screen_refresh else "",
                 "Разрешение": details.screen_resolution,
                 "Процессор": details.processor,
-                "ОС": details.os,
                 "Мощность звука": f"{details.audio_power} Вт" if details.audio_power else "",
                 "Аудиоканалы": details.speakers_channels,
                 "Количество HDMI": f"{details.hdmi_count} Шт" if details.hdmi_count else "",
+                "Версия HDMI": details.hdmi_version,
                 "Установка": details.installation,
                 "Материал": details.material,
                 "Вес": f"{details.weight} Кг" if details.weight else ""

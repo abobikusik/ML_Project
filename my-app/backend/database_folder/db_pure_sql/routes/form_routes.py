@@ -11,10 +11,6 @@ logger = logging.getLogger(__name__)
 
 
 #PHONE ROUTES
-@router.get("/phone_form")
-def get_phone_form():
-    return FileResponse("views/forms/phone_form.html")
-
 @router.post("/phone_form")
 def phone_form(data: dict = Body()):
     logger.info(f"Получены данные для телефона: {data}")
@@ -62,16 +58,16 @@ def phone_form(data: dict = Body()):
                 request_id,
                 data.get("brand", ""),
                 data.get("model", ""),
-                data.get("screen_size", ""),
-                data.get("display_type", ""),
-                data.get("screen_refresh", ""),
+                data.get("screenSize", ""),
+                data.get("matrixType", ""),
+                data.get("frequency", ""),
                 data.get("processor", ""),
-                data.get("OS", ""),
+                data.get("os", ""),
                 data.get("cellular", ""),
                 data.get("storage", ""),
                 data.get("camera", ""),
                 data.get("battery", ""),
-                data.get("charging_speed", ""),
+                data.get("chargingSpeed", ""),
                 data.get("material", ""),
                 data.get("weight", "")
             ),
@@ -89,10 +85,6 @@ def phone_form(data: dict = Body()):
 ### АНАЛОГИЧНО ДЛЯ ОСТАЛЬНЫХ ФОРМ ###
 
 #LAPTOP ROUTES
-@router.get("/laptop_form")
-def get_laptop_form():
-    return FileResponse("views/forms/laptop_form.html")
-
 @router.post("/laptop_form")
 def laptop_form(data: dict = Body()):
     logger.info(f"Получены данные для ноутбука: {data}")
@@ -137,18 +129,18 @@ def laptop_form(data: dict = Body()):
                 request_id,
                 data.get("brand", ""),
                 data.get("model", ""),
-                data.get("screen_size", ""),
-                data.get("display_type", ""),
-                data.get("screen_refresh", ""),
-                data.get("screen_resolution", ""),
+                data.get("diagonal", ""),
+                data.get("matrix", ""),
+                data.get("frequency", ""),
+                data.get("resolution", ""),
                 data.get("processor", ""),
-                data.get("OS", ""),
-                data.get("RAM", ""),
-                data.get("SSD", ""),
-                data.get("graphics_card", ""),
-                data.get("VRAM", ""),
+                data.get("os", ""),
+                data.get("ram", ""),
+                data.get("ssd", ""),
+                data.get("graphicsCard", ""),
+                data.get("vram", ""),
                 data.get("battery", ""),
-                data.get("power_adapter", ""),
+                data.get("powerAdapter", ""),
                 data.get("material", ""),
                 data.get("weight", "")
             ),
@@ -203,8 +195,8 @@ def tv_form(data: dict = Body()):
             """
             INSERT INTO tv_requests (
                 request_id, brand, model, screen_size, display_type,
-                screen_refresh, screen_resolution, processor, os,
-                audio_power, speakers_channels, hdmi_count,
+                screen_refresh, screen_resolution, processor,
+                audio_power, speakers_channels, hdmi_count, hdmi_version,
                 installation, material, weight
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
@@ -212,22 +204,22 @@ def tv_form(data: dict = Body()):
                 request_id,
                 data.get("brand", ""),
                 data.get("model", ""),
-                data.get("screen_size", ""),
-                data.get("display_type", ""),
-                data.get("screen_refresh", ""),
-                data.get("screen_resolution", ""),
+                data.get("screenSize", ""),
+                data.get("matrixType", ""),
+                data.get("frequency", ""),
+                data.get("resolution", ""),
                 data.get("processor", ""),
-                data.get("OS", ""),
-                data.get("audio_power", ""),
-                data.get("speakers_channels", ""),
-                data.get("HDMI_count", ""),
-                data.get("installation", ""),
+                data.get("audioPower", ""),
+                data.get("numberOfSpeakers", ""),
+                data.get("hdmiCount", ""),
+                data.get("hdmiVersion", ""),
+                data.get("installationMethod", ""),
                 data.get("material", ""),
                 data.get("weight", "")
             ),
             commit=True
         )
-        
+    
         logger.info(f"Запрос #{request_id} для телевизора успешно сохранен")
         return {"status": "success", "message": "Данные сохранены", "request_id": request_id}
         

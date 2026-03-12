@@ -167,6 +167,7 @@ def get_request_detail(request_id: int):
                 "Мощность звука": f"{details['audio_power']} Вт" if details["audio_power"] else "",
                 "Аудиоканалы": details["speakers_channels"],
                 "Количество HDMI": f"{details['hdmi_count']} Шт" if details["hdmi_count"] else "",
+                "Версия HDMI": details['hdmi_version'],
                 "Установка": details["installation"],
                 "Материал": details["material"],
                 "Вес": f"{details['weight']} Кг" if details["weight"] else ""

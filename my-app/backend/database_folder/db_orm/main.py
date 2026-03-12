@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import logging
 import uvicorn
@@ -16,22 +16,25 @@ init_database()
 #Создание приложения
 app = FastAPI()
 
-#Подключение статческих файлов
-app.mount("/static", StaticFiles(directory="views/static"), name="static")
+#Настройка CORS
+origins = [
+    "http://localhost:3000",    # Адрес, где будет крутиться React (стандартный порт)
+    "http://127.0.0.1:3000",
+    # Сюда можно добавить адрес будущего продакшен-сервера, например:
+    # "https://my-cool-app.com",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,         # Разрешаем запросы только с этих адресов
+    allow_credentials=True,
+    allow_methods=["*"],           # Разрешаем все HTTP-методы (GET, POST, PATCH и т.д.)
+    allow_headers=["*"],           # Разрешаем все заголовки
+)
 
 #Подключение роутеров
 app.include_router(form_routes.router)
 app.include_router(history_routes.router)
 
 
-@app.get("/")
-def main():
-    return FileResponse("views/index.html")
-
-@app.get("/history")
-def main():
-    return FileResponse("views/history.html")
-
-
 if __name__ == "__main__":
-    uvicorn.run("main:app", reload=True, port=8000) 
+    uvicorn.run("main:app", reload=True) 
