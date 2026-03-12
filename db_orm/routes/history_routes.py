@@ -76,7 +76,7 @@ def get_request_detail(request_id: int, db: Session = Depends(get_db)):
     
     #Формирование словаря с характеристиками из БД в зависимости от категории
     attributes = {}
-    #Подробная информации о телефоне
+    #Подробная информация о телефоне
     if request.category_rel.name == 'phone':
         details = db.query(models.PhoneRequest).where(models.PhoneRequest.request_id == request_id).first() 
         if details:
@@ -142,7 +142,7 @@ def get_request_detail(request_id: int, db: Session = Depends(get_db)):
     #Формируем название товара для отображения на сайте
     preview = get_preview(request, db)
     
-    # Фильтруем пустые значения
+    #Фильтруем пустые значения
     attributes = {k: v for k, v in attributes.items() if v}
     
     return { 

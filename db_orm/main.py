@@ -6,7 +6,7 @@ import uvicorn
 from routes import form_routes, history_routes
 from database.init_data import init_database
 
-# Настройка логирования
+#Настройка логирования
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
