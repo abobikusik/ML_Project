@@ -37,6 +37,24 @@ function PhoneForm() {
     };
     console.log(formData);
     // TODO: connect to FastApi
+    fetch('http://localhost:8000/phone_form', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Ошибка сервера');
+      return response.json();
+    })
+    .then(data => {
+      console.log('Успех:', data);
+      alert('Данные отправлены!');
+      // TODO: здесь можно перенаправить на страницу истории
+    })
+    .catch(error => {
+      console.error('Ошибка:', error);
+      alert('Не удалось отправить данные');
+    });
   };
   return (
     <>
