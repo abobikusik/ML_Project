@@ -26,7 +26,7 @@ class Category(Base):
 
 
 class Request(Base):
-    """Основная таблица запросов"""
+    #ОСНОВНАЯ ТАБЛИЦА ЗАПРОСОВ  
     __tablename__ = "requests"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -35,7 +35,7 @@ class Request(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     generated_text = Column(Text, nullable=True)
 
-    # Связи со всеми таблицами 
+    #Связи со всеми таблицами 
     category_rel = relationship("Category", back_populates="requests")
     status_rel = relationship("Status", back_populates="requests")
     phone_details = relationship("PhoneRequest", back_populates="request", uselist=False, cascade="all, delete-orphan")

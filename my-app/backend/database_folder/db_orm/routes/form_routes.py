@@ -110,7 +110,7 @@ def laptop_form(data: dict = Body()):
             "ram": data.get("ram", ""),
             "ssd": data.get("ssd", ""),
             "graphics_card": data.get("graphicsCard", ""),
-            "vram": data.get("VRAM", ""),
+            "vram": data.get("vram", ""),
             "battery": data.get("battery", ""),
             "power_adapter": data.get("powerAdapter", ""),
             "material": data.get("material", ""),
