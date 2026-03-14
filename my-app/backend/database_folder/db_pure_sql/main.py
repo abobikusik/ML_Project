@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import logging
 import uvicorn
-from routes import form_routes, history_routes
+from database import router
 from database.init_data import init_database
 
 #Настройка логирования
@@ -31,9 +31,8 @@ app.add_middleware(
     allow_headers=["*"],           # Разрешаем все заголовки
 )
 
-#Подключение роутеров
-app.include_router(form_routes.router)
-app.include_router(history_routes.router)
+#Подключение роутера
+app.include_router(router.router)
 
 
 if __name__ == "__main__":

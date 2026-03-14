@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 #URL подключения
-SQLALCHEMY_DATABASE_URL = "sqlite:///./history.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./database/history.db"
 
 #Создание движка - основное соединение с БД
 engine = create_engine(

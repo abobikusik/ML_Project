@@ -1,7 +1,7 @@
 import sqlite3
 from contextlib import contextmanager
 
-DATABASE = "history.db"
+DATABASE = "./database/history.db"
 
 def get_db_connection():
     #Получить соединение с БД
