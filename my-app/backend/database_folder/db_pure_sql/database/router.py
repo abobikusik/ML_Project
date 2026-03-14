@@ -358,10 +358,6 @@ def laptop_form(data: dict = Body()):
         raise HTTPException(status_code=500, detail=str(e))
 
 #TV ROUTES
-@router.get("/tv_form")
-def get_tv_form():
-    return FileResponse("views/forms/tv_form.html")
-
 @router.post("/tv_form")
 def tv_form(data: dict = Body()):
     logger.info(f"Получены данные для телевизора: {data}")
