@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function TvForm() {
+function TvForm({ onBtnGenerateClick }) {
   // Создаем ref для каждого input
   const tvBrandRef = useRef(null);
   const tvModelRef = useRef(null);
@@ -36,7 +36,7 @@ function TvForm() {
       weight: tvWeightRef.current?.value || "",
     };
     console.log(formData);
-    // TODO: connect to FastApi
+
     fetch('http://localhost:8000/tv_form', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -49,7 +49,6 @@ function TvForm() {
     .then(data => {
       console.log('Успех:', data);
       alert('Данные отправлены!');
-      // TODO: здесь можно перенаправить на страницу истории
     })
     .catch(error => {
       console.error('Ошибка:', error);
@@ -227,7 +226,10 @@ function TvForm() {
             <div
               id="generateTvBtn"
               className="generate-btn"
-              onClick={btnTvGenerateClick}
+              onClick={() => {
+                btnTvGenerateClick();                   // основная функция
+                onBtnGenerateClick("history");          // функция перехода
+              }}
             >
               Сгенерировать
             </div>

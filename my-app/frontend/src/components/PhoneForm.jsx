@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function PhoneForm() {
+function PhoneForm({ onBtnGenerateClick }) {
   // Создаем ref для каждого input
   const phoneBrandRef = useRef(null);
   const phoneModelRef = useRef(null);
@@ -36,7 +36,7 @@ function PhoneForm() {
       weight: phoneWeightRef.current?.value || "",
     };
     console.log(formData);
-    // TODO: connect to FastApi
+
     fetch('http://localhost:8000/phone_form', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -49,7 +49,6 @@ function PhoneForm() {
     .then(data => {
       console.log('Успех:', data);
       alert('Данные отправлены!');
-      // TODO: здесь можно перенаправить на страницу истории
     })
     .catch(error => {
       console.error('Ошибка:', error);
@@ -227,7 +226,10 @@ function PhoneForm() {
             <div
               id="generatePhoneBtn"
               className="generate-btn"
-              onClick={btnPhoneGenerateClick}
+              onClick={() => {
+                btnPhoneGenerateClick();                // основная функция
+                onBtnGenerateClick("history");          // функция перехода
+              }}
             >
               Сгенерировать
             </div>

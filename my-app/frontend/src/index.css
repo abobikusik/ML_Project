@@ -157,7 +157,288 @@ body {
   box-shadow: 0 4px 10px rgba(0, 102, 204, 0.3);
 }
 
-/* Масштабирование */
+/* ========== СТИЛИ ДЛЯ СТРАНИЦЫ ИСТОРИИ ========== */
+
+/* Область фильтрации */
+.filter-section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Контейнер для таблицы */
+.history-table {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Шапка таблицы */
+.history-table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Ячейки шапки */
+.history-table thead th {
+  background: #0066cc;
+  color: white;
+  font-weight: 500;
+  padding: 15px;
+}
+
+/* Тело таблицы с прокруткой */
+.history-table tbody {
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 450px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #0066cc #f0f0f0;
+}
+
+/* Фикс для колонок */
+.history-table tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Принудительные ширины колонок */
+.history-table th:nth-child(1),
+.history-table td:nth-child(1) {
+  width: 5%;
+  min-width: 50px;
+}
+
+.history-table th:nth-child(2),
+.history-table td:nth-child(2) {
+  width: 15%;
+  min-width: 100px;
+}
+
+.history-table th:nth-child(3),
+.history-table td:nth-child(3) {
+  width: 40%;
+  min-width: 200px;
+}
+
+.history-table th:nth-child(4),
+.history-table td:nth-child(4) {
+  width: 20%;
+  min-width: 120px;
+}
+
+.history-table th:nth-child(5),
+.history-table td:nth-child(5) {
+  width: 20%;
+  min-width: 100px;
+}
+
+/* Отступы в ячейках */
+.history-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Эффекты при наведении */
+.history-table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.history-table tbody tr:hover {
+  background-color: #f0f7ff;
+}
+
+/* Отображение статусов и категорий */
+.category-badge {
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.category-phone {
+  background: #e3f2fd;
+  color: #0066cc;
+}
+
+.category-laptop {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.category-tv {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.status-completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Пустое состояние таблицы */
+.empty-state {
+  text-align: center;
+  padding: 50px;
+  color: #999;
+}
+
+.empty-state-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+/* ========== СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА ========== */
+
+.modal.show {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-attr {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  border-left: 3px solid #0066cc;
+}
+
+.modal-attr-label {
+  width: 200px;
+  font-weight: bold;
+  color: #0066cc;
+}
+
+.modal-attr-value {
+  flex: 1;
+  color: #333;
+}
+
+.generated-text {
+  background: #e3f2fd;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  white-space: pre-wrap;
+  font-style: italic;
+  border-left: 4px solid #0066cc;
+}
+
+/* ========== АДАПТАЦИЯ ДЛЯ РАЗНЫХ РАЗРЕШЕНИЙ ========== */
+
+/* Для экранов от 1200px до 1400px */
+@media (max-width: 1400px) {
+  .history-table th:nth-child(3),
+  .history-table td:nth-child(3) {
+    min-width: 130px;
+  }
+  
+  .history-table th:nth-child(4),
+  .history-table td:nth-child(4) {
+    min-width: 120px;
+  }
+}
+
+/* Для экранов от 992px до 1200px */
+@media (max-width: 1200px) {
+  .history-table th:nth-child(3),
+  .history-table td:nth-child(3) {
+    min-width: 120px;
+    font-size: 13px;
+  }
+  
+  .history-table th:nth-child(4),
+  .history-table td:nth-child(4) {
+    min-width: 115px;
+    font-size: 13px;
+  }
+  
+  .history-table td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+  
+  .category-badge,
+  .status-badge {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+}
+
+/* Для планшетов */
+@media (max-width: 991px) {
+  .col-md-8.col-lg-6 {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  
+  .form-card {
+    max-width: 100%;
+    margin: 20px 10px;
+  }
+  
+  .history-table {
+    font-size: 12px;
+  }
+  
+  .history-table th,
+  .history-table td {
+    padding: 8px 5px;
+  }
+  
+  .history-table th:nth-child(3),
+  .history-table td:nth-child(3) {
+    min-width: 100px;
+  }
+  
+  .history-table th:nth-child(4),
+  .history-table td:nth-child(4) {
+    min-width: 100px;
+  }
+  
+  .history-table th:nth-child(5),
+  .history-table td:nth-child(5) {
+    min-width: 90px;
+  }
+  
+  .category-badge,
+  .status-badge {
+    font-size: 9px;
+    padding: 2px 4px;
+    white-space: normal;
+    line-height: 1.3;
+  }
+}
+
+/* Для мобильных */
 @media (max-width: 768px) {
   .category-card {
     margin: 20px 15px;
@@ -167,5 +448,154 @@ body {
 
   .category-buttons-container {
     max-height: 300px;
+  }
+  
+  /* Полностью переработанная таблица для мобильных */
+  .history-table table {
+    display: block;
+  }
+  
+  .history-table thead {
+    display: none; /* Скрываем шапку на мобильных */
+  }
+  
+  .history-table tbody {
+    display: block;
+    max-height: none;
+  }
+  
+  .history-table tbody tr {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 12px;
+    border-bottom: 2px solid #e0e0e0;
+    position: relative;
+    cursor: pointer;
+    background: white;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  
+  .history-table tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .history-table td {
+    display: block;
+    width: 100% !important;
+    min-width: 100% !important;
+    padding: 5px 0 !important;
+    border-bottom: none;
+    text-align: left;
+    position: relative;
+    padding-left: 110px !important; /* Место для псевдо-заголовка */
+  }
+  
+  /* Псевдо-заголовки */
+  .history-table td:nth-child(1):before {
+    content: "ID:";
+    position: absolute;
+    left: 0;
+    width: 100px;
+    font-weight: bold;
+    color: #0066cc;
+  }
+  
+  .history-table td:nth-child(2):before {
+    content: "Категория:";
+    position: absolute;
+    left: 0;
+    width: 100px;
+    font-weight: bold;
+    color: #0066cc;
+  }
+  
+  .history-table td:nth-child(3):before {
+    content: "Товар:";
+    position: absolute;
+    left: 0;
+    width: 100px;
+    font-weight: bold;
+    color: #0066cc;
+  }
+  
+  .history-table td:nth-child(4):before {
+    content: "Дата:";
+    position: absolute;
+    left: 0;
+    width: 100px;
+    font-weight: bold;
+    color: #0066cc;
+  }
+  
+  .history-table td:nth-child(5):before {
+    content: "Статус:";
+    position: absolute;
+    left: 0;
+    width: 100px;
+    font-weight: bold;
+    color: #0066cc;
+  }
+  
+  .history-table td:first-child {
+    font-weight: bold;
+  }
+  
+  .category-badge,
+  .status-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 4px 8px;
+    white-space: nowrap;
+  }
+  
+  /* Адаптация модального окна */
+  .modal-dialog {
+    margin: 10px;
+  }
+  
+  .modal-attr {
+    flex-direction: column;
+  }
+  
+  .modal-attr-label {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .filter-section .row {
+    gap: 15px;
+  }
+  
+  .filter-section .col-md-4 {
+    width: 100%;
+  }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+  .history-table td {
+    padding-left: 90px !important;
+    font-size: 11px;
+  }
+  
+  .history-table td:nth-child(1):before,
+  .history-table td:nth-child(2):before,
+  .history-table td:nth-child(3):before,
+  .history-table td:nth-child(4):before,
+  .history-table td:nth-child(5):before {
+    width: 80px;
+  }
+  
+  .category-badge,
+  .status-badge {
+    font-size: 10px;
+    padding: 3px 6px;
+    white-space: normal;
+  }
+  
+  .main-title {
+    font-size: 20px;
   }
 }

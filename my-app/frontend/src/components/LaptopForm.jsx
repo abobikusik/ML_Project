@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function LaptopForm() {
+function LaptopForm({ onBtnGenerateClick }) {
   // Создаем ref для каждого input
   const laptopBrandRef = useRef(null);
   const laptopModelRef = useRef(null);
@@ -40,7 +40,7 @@ function LaptopForm() {
       os: laptopOSRef.current?.value || "",
     };
     console.log(formData);
-    // TODO: connect to FastApi
+
     fetch('http://localhost:8000/laptop_form', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -53,7 +53,6 @@ function LaptopForm() {
     .then(data => {
       console.log('Успех:', data);
       alert('Данные отправлены!');
-      // TODO: здесь можно перенаправить на страницу истории
     })
     .catch(error => {
       console.error('Ошибка:', error);
@@ -249,7 +248,10 @@ function LaptopForm() {
             <div
               id="generateLaptopBtn"
               className="generate-btn"
-              onClick={btnLaptopGenerateClick}
+              onClick={() => {
+                btnLaptopGenerateClick();               // основная функция
+                onBtnGenerateClick("history");          // функция перехода
+              }}
             >
               Сгенерировать
             </div>
