@@ -165,7 +165,6 @@ def get_request_detail(request_id: int):
                 "Частота обновления": f"{details['screen_refresh']} Гц" if details["screen_refresh"] else "",
                 "Разрешение": details["screen_resolution"],
                 "Процессор": details["processor"],
-                "ОС": details["os"],
                 "Мощность звука": f"{details['audio_power']} Вт" if details["audio_power"] else "",
                 "Аудиоканалы": details["speakers_channels"],
                 "Количество HDMI": f"{details['hdmi_count']} Шт" if details["hdmi_count"] else "",
