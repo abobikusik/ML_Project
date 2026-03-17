@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Body
-from database.db import execute_query
+from .db import execute_query
 from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime

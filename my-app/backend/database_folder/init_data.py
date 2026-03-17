@@ -1,4 +1,4 @@
-from database.db import execute_query
+from .db import execute_query
 import logging
 
 logger = logging.getLogger(__name__)
