@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function LaptopForm() {
+function LaptopForm({ onBtnGenerateClick }) {
   // Создаем ref для каждого input
   const laptopBrandRef = useRef(null);
   const laptopModelRef = useRef(null);
@@ -46,19 +46,19 @@ function LaptopForm() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     })
-    .then(response => {
-      if (!response.ok) throw new Error('Ошибка сервера');
-      return response.json();
-    })
-    .then(data => {
-      console.log('Успех:', data);
-      alert('Данные отправлены!');
-      // TODO: здесь можно перенаправить на страницу истории
-    })
-    .catch(error => {
-      console.error('Ошибка:', error);
-      alert('Не удалось отправить данные');
-    });
+      .then(response => {
+        if (!response.ok) throw new Error('Ошибка сервера');
+        return response.json();
+      })
+      .then(data => {
+        console.log('Успех:', data);
+        alert('Данные отправлены!');
+        // TODO: здесь можно перенаправить на страницу истории
+      })
+      .catch(error => {
+        console.error('Ошибка:', error);
+        alert('Не удалось отправить данные');
+      });
   };
   return (
     <>
@@ -249,7 +249,10 @@ function LaptopForm() {
             <div
               id="generateLaptopBtn"
               className="generate-btn"
-              onClick={btnLaptopGenerateClick}
+              onClick={() => {
+                btnLaptopGenerateClick();
+                onBtnGenerateClick("history");
+              }}
             >
               Сгенерировать
             </div>

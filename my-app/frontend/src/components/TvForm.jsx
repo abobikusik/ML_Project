@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function TvForm() {
+function TvForm({ onBtnGenerateClick }) {
   // Создаем ref для каждого input
   const tvBrandRef = useRef(null);
   const tvModelRef = useRef(null);
@@ -42,19 +42,19 @@ function TvForm() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     })
-    .then(response => {
-      if (!response.ok) throw new Error('Ошибка сервера');
-      return response.json();
-    })
-    .then(data => {
-      console.log('Успех:', data);
-      alert('Данные отправлены!');
-      // TODO: здесь можно перенаправить на страницу истории
-    })
-    .catch(error => {
-      console.error('Ошибка:', error);
-      alert('Не удалось отправить данные');
-    });
+      .then(response => {
+        if (!response.ok) throw new Error('Ошибка сервера');
+        return response.json();
+      })
+      .then(data => {
+        console.log('Успех:', data);
+        alert('Данные отправлены!');
+        // TODO: здесь можно перенаправить на страницу истории
+      })
+      .catch(error => {
+        console.error('Ошибка:', error);
+        alert('Не удалось отправить данные');
+      });
   };
   return (
     <>
@@ -227,7 +227,10 @@ function TvForm() {
             <div
               id="generateTvBtn"
               className="generate-btn"
-              onClick={btnTvGenerateClick}
+              onClick={() => {
+                btnTvGenerateClick();
+                onBtnGenerateClick("history");
+              }}
             >
               Сгенерировать
             </div>
