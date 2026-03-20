@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 import uvicorn
-from database_folder import router
-from database_folder.init_data import init_database
+from database import router
+from database.init_data import init_database
 
 #Настройка логирования
 logging.basicConfig(level=logging.INFO)

@@ -1,7 +1,8 @@
 import sqlite3
+import os
 from contextlib import contextmanager
 
-DATABASE = "./database_folder/history.db"
+DATABASE = os.getenv("DATABASE_PATH", "./database/history.db")
 
 def get_db_connection():
     #Получить соединение с БД
@@ -26,7 +27,11 @@ def execute_query(query, params=(), fetch_one=False, fetch_all=False, commit=Fal
         
         if commit:
             conn.commit()
-            return cursor.lastrowid
+            # Если это INSERT, возвращаем lastrowid
+            if query.strip().upper().startswith('INSERT'):
+                return cursor.lastrowid
+            # Для UPDATE/DELETE возвращаем rowcount
+            return cursor.rowcount
         
         if fetch_one:
             result = cursor.fetchone()

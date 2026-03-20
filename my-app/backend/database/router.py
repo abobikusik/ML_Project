@@ -212,6 +212,70 @@ def get_preview(request_id: int, category: str):
     
     return f"Запрос #{request_id}"
 
+
+def update_request_with_generation(request_id: int, data: dict, category: str, db=None):
+    """
+    Вызывает функцию генерации описания и обновляет запрос в БД
+    
+    Args:
+        request_id: ID запроса
+        data: словарь с данными формы
+        category: категория товара ('phone', 'laptop', 'tv')
+        db: соединение с БД (необязательно)
+    """
+    logger.info(f"🚀 update START for #{request_id}")
+    
+    try:
+        #generated_text = generate_product_description(data, category)
+
+        #TODO: ДОБАВИТЬ ВЫЗОВ ФУНКЦИИ ГЕНЕРАЦИИ ОПИСАНИЯ
+        generated_text = ""
+
+        #ОБРАБОТКА: если текст пустой или None — ничего не меняем
+        if generated_text is None or generated_text == "":
+            logger.warning(f"⚠️ Запрос #{request_id} ({category}) — текст не получен (модель недоступна). Остаётся в статусе pending")
+            return None
+        
+        if generated_text and generated_text != "Не удалось сгенерировать описание":
+            execute_query(
+                """
+                UPDATE requests 
+                SET generated_text = ?, 
+                    status_id = (SELECT id FROM statuses WHERE name = 'completed')
+                WHERE id = ?
+                """,
+                (generated_text, request_id),
+                commit=True
+            )
+            logger.info(f"✅ Описание для запроса #{request_id} ({category}) успешно сгенерировано")
+            return generated_text
+        else:
+            execute_query(
+                """
+                UPDATE requests 
+                SET status_id = (SELECT id FROM statuses WHERE name = 'error')
+                WHERE id = ?
+                """,
+                (request_id,),
+                commit=True
+            )
+            # logger.error(f"❌ Ошибка генерации для запроса #{request_id} ({category}): {generated_text}")
+            return None
+            
+    except Exception as e:
+        logger.error(f"❌ Критическая ошибка при генерации для запроса #{request_id}: {e}")
+        execute_query(
+            """
+            UPDATE requests 
+            SET status_id = (SELECT id FROM statuses WHERE name = 'error')
+            WHERE id = ?
+            """,
+            (request_id,),
+            commit=True
+        )
+        return None
+    
+
 #PHONE ROUTES
 @router.post("/phone_form")
 def phone_form(data: dict = Body()):
@@ -277,7 +341,17 @@ def phone_form(data: dict = Body()):
         )
         
         logger.info(f"Запрос #{request_id} для телефона успешно сохранен")
-        return {"status": "success", "message": "Данные сохранены", "request_id": request_id}
+        
+        
+        #Обновляем описание
+        generated_text = update_request_with_generation(request_id, data, "phone")
+      
+        return {
+            "status": "success", 
+            "message": "Данные сохранены и описание сгенерировано", 
+            "request_id": request_id,
+            "generated_text": generated_text
+        }
         
     except Exception as e:
         logger.error(f"Ошибка при сохранении: {str(e)}")
@@ -350,7 +424,16 @@ def laptop_form(data: dict = Body()):
         )
         
         logger.info(f"Запрос #{request_id} для ноутбука успешно сохранен")
-        return {"status": "success", "message": "Данные сохранены", "request_id": request_id}
+
+        #Обновляем описание
+        generated_text = update_request_with_generation(request_id, data, "laptop")
+
+        return {
+            "status": "success", 
+            "message": "Данные сохранены и описание сгенерировано", 
+            "request_id": request_id,
+            "generated_text": generated_text
+        }
         
     except Exception as e:
         logger.error(f"Ошибка при сохранении: {str(e)}")
@@ -419,7 +502,16 @@ def tv_form(data: dict = Body()):
         )
     
         logger.info(f"Запрос #{request_id} для телевизора успешно сохранен")
-        return {"status": "success", "message": "Данные сохранены", "request_id": request_id}
+
+        #Обновляем описание
+        generated_text = update_request_with_generation(request_id, data, "tv")              
+
+        return {
+            "status": "success", 
+            "message": "Данные сохранены и описание сгенерировано", 
+            "request_id": request_id,
+            "generated_text": generated_text
+        }
         
     except Exception as e:
         logger.error(f"Ошибка при сохранении: {str(e)}")
