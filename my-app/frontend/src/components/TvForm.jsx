@@ -1,6 +1,9 @@
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
-function TvForm({ onBtnGenerateClick }) {
+function TvForm() {
+  const navigate = useNavigate();
+
   // Создаем ref для каждого input
   const tvBrandRef = useRef(null);
   const tvModelRef = useRef(null);
@@ -36,8 +39,10 @@ function TvForm({ onBtnGenerateClick }) {
       weight: tvWeightRef.current?.value || "",
     };
     console.log(formData);
-    // TODO: connect to FastApi
-    fetch('http://localhost:8000/tv_form', {
+
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
+    fetch(`${API_URL}/tv_form`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -48,12 +53,9 @@ function TvForm({ onBtnGenerateClick }) {
       })
       .then(data => {
         console.log('Успех:', data);
-        alert('Данные отправлены!');
-        // TODO: здесь можно перенаправить на страницу истории
       })
       .catch(error => {
         console.error('Ошибка:', error);
-        alert('Не удалось отправить данные');
       });
   };
   return (
@@ -229,7 +231,7 @@ function TvForm({ onBtnGenerateClick }) {
               className="generate-btn"
               onClick={() => {
                 btnTvGenerateClick();
-                onBtnGenerateClick("history");
+                navigate("/history");
               }}
             >
               Сгенерировать

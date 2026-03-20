@@ -1,8 +1,7 @@
-const CategoryCard = ({ onCategoryClick }) => {
-  // ФУНКЦИИ НАВИГАЦИИ
-  const goToPhoneForm = () => console.log("📱 Форма смартфонов");
-  const goToLaptopForm = () => console.log("💻 Форма ноутбуков");
-  const goToTvForm = () => console.log("📺 Форма телевизоров");
+import { useNavigate } from "react-router-dom";
+
+const CategoryCard = () => {
+  const navigate = useNavigate();
 
   return (
     <>
@@ -17,7 +16,7 @@ const CategoryCard = ({ onCategoryClick }) => {
             <div
               id="go_to_phone_form"
               className="category-btn"
-              onClick={() => onCategoryClick("phone")}
+              onClick={() => navigate("/phone")}
             >
               <span className="category-icon">📱</span>
               Смартфон
@@ -32,7 +31,7 @@ const CategoryCard = ({ onCategoryClick }) => {
             <div
               id="go_to_laptop_form"
               className="category-btn"
-              onClick={() => onCategoryClick("laptop")}
+              onClick={() => navigate("/laptop")}
             >
               <span className="category-icon">💻</span>
               Ноутбук
@@ -47,7 +46,7 @@ const CategoryCard = ({ onCategoryClick }) => {
             <div
               id="go_to_tv_form"
               className="category-btn"
-              onClick={() => onCategoryClick("tv")}
+              onClick={() => navigate("/tv")}
             >
               <span className="category-icon">📺</span>
               Телевизор

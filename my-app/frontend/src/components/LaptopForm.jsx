@@ -1,6 +1,9 @@
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
-function LaptopForm({ onBtnGenerateClick }) {
+function LaptopForm() {
+  const navigate = useNavigate();
+
   // Создаем ref для каждого input
   const laptopBrandRef = useRef(null);
   const laptopModelRef = useRef(null);
@@ -40,8 +43,10 @@ function LaptopForm({ onBtnGenerateClick }) {
       os: laptopOSRef.current?.value || "",
     };
     console.log(formData);
-    // TODO: connect to FastApi
-    fetch('http://localhost:8000/laptop_form', {
+
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
+    fetch(`${API_URL}/laptop_form`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -52,12 +57,9 @@ function LaptopForm({ onBtnGenerateClick }) {
       })
       .then(data => {
         console.log('Успех:', data);
-        alert('Данные отправлены!');
-        // TODO: здесь можно перенаправить на страницу истории
       })
       .catch(error => {
         console.error('Ошибка:', error);
-        alert('Не удалось отправить данные');
       });
   };
   return (
@@ -251,7 +253,7 @@ function LaptopForm({ onBtnGenerateClick }) {
               className="generate-btn"
               onClick={() => {
                 btnLaptopGenerateClick();
-                onBtnGenerateClick("history");
+                navigate("/history");
               }}
             >
               Сгенерировать

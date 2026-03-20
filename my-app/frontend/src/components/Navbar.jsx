@@ -1,10 +1,12 @@
-const NavbarCustom = ({ onNavClick, currentPage }) => {
+import { NavLink } from "react-router-dom";
+
+const NavbarCustom = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-custom">
       <div className="container-fluid">
-        <a className="navbar-brand" onClick={() => onNavClick("home")}>
+        <NavLink className="navbar-brand" to="/">
           💿 Сервис генерации описания товаров
-        </a>
+        </NavLink>
 
         <button
           className="navbar-toggler"
@@ -18,11 +20,12 @@ const NavbarCustom = ({ onNavClick, currentPage }) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a 
-                className={`nav-link ${currentPage === "home" ? "active" : ""}`} 
-                onClick={() => onNavClick("home")}>
+              <NavLink 
+                className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} 
+                to="/"
+              >
                 🏠 Главная
-              </a>
+              </NavLink>
             </li>
 
             <li className="nav-item dropdown">
@@ -37,39 +40,30 @@ const NavbarCustom = ({ onNavClick, currentPage }) => {
 
               <ul className="dropdown-menu">
                 <li>
-                  <a
-                    className="dropdown-item"
-                    onClick={() => onNavClick("phone")}
-                  >
+                  <NavLink className="dropdown-item" to="/phone">
                     📱 Смартфоны
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    className="dropdown-item"
-                    onClick={() => onNavClick("laptop")}
-                  >
+                  <NavLink className="dropdown-item" to="/laptop">
                     💻 Ноутбуки
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a 
-                    className="dropdown-item" 
-                    onClick={() => onNavClick("tv")}
-                  >
+                  <NavLink className="dropdown-item" to="/tv">
                     📺 Телевизоры
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </li>
 
             <li className="nav-item">
-              <a
-                className={`nav-link ${currentPage === "history" ? "active" : ""}`}
-                onClick={() => onNavClick("history")}
+              <NavLink 
+                className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} 
+                to="/history"
               >
                 📝 История запросов
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -77,5 +71,5 @@ const NavbarCustom = ({ onNavClick, currentPage }) => {
     </nav>
   );
 };
-// Что бы можно было использовать этот компонент в других файлах
+
 export default NavbarCustom;

@@ -41,9 +41,11 @@ function HistoryForm() {
     return () => clearTimeout(timer);
   }, [search]);
 
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
   const loadHistory = async () => {
     setLoading(true);
-    let url = 'http://localhost:8000/history/';
+    let url = `${API_URL}/history/`;
     const params = new URLSearchParams();
     if (filters.category) params.append('category', filters.category);
     if (filters.status) params.append('status', filters.status);
@@ -94,7 +96,7 @@ function HistoryForm() {
 
   const showRequestDetails = async (requestId) => {
     try {
-      const response = await fetch(`http://localhost:8000/history/${requestId}`);
+      const response = await fetch(`${API_URL}/history/${requestId}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
